@@ -9,6 +9,9 @@ const addButton = document.getElementById("addPerson");
 const personsList = document.getElementById("personsList");
 const calcStats = document.getElementById("calcStats");
 
+const stats = document.getElementById("stats");
+const div = document.createElement("div");
+
 addButton.onclick = addPersons;
 calcStats.onclick = getStats;
 
@@ -52,13 +55,11 @@ function findPerson(personsArray, id) {
 }
 
 function getStats() {
-  const stats = document.getElementById("stats");
-  const span = document.createElement("span");
   let res = 0;
   res = persons.reduce((acum, p) => (acum += p.age / persons.length), 0);
   let allAges = persons.map((persons) => persons.age);
   const minAge = Math.min(...allAges);
   const maxAge = Math.max(...allAges);
-  span.append(document.createTextNode(`Average age: ${res} Min age: ${minAge} Max age: ${maxAge}`));
-  stats.appendChild(span);
+  div.innerHTML =  (`Average age: ${res} Min age: ${minAge} Max age: ${maxAge}`);
+  stats.appendChild(div);
 }
